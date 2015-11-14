@@ -1,0 +1,43 @@
+def SimpleBinarySearch(alist, low, high, n):
+    if low > high:
+        return -1
+    mid = (low + high) // 2
+    if alist[mid] == n:
+        return mid
+    else:
+        if n > alist[mid]:
+            return SimpleBinarySearch(alist, mid + 1, high, n)
+        else:
+            return SimpleBinarySearch(alist, low, mid -1, n)
+
+        
+
+
+def BinarySearchRotatedArray(alist, n):
+    return MainBS(alist, 0, len(alist) -1 , n)
+
+def MainBS(alist, low, high, n):
+
+    if low > high:
+        return -1
+    mid = (low + high) // 2
+    if alist[mid] == n :
+        return mid
+    else:
+        if alist[mid] >= alist[low]:
+            if alist[low] <= n and alist[mid] > n:
+                return SimpleBinarySearch(alist, low, mid -1, n)
+            else:
+                return MainBS(alist, mid + 1, high, n)
+        else:
+            if alist[mid]  < n and alist[high] >= n:
+                return SimpleBinarySearch(alist, mid + 1, high , n)
+            else:
+                return MainBS(alist, low, mid -1, n)
+print "Return 4"
+print BinarySearchRotatedArray([3,4,5,1,2],2)
+print "Return 0"
+print BinarySearchRotatedArray([3,4,5,1,2],3)
+print "Return 2"
+print BinarySearchRotatedArray([3,4,5,1,2],4)
+
