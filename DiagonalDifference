@@ -1,0 +1,23 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+n = int(raw_input())
+newlist = []
+for i in range(0,n):
+    a = raw_input()
+    b = a.split()
+    c = []
+    for items in b:
+        c.append(int(items))
+    newlist.append(c)
+
+def DiagonalDifference(array):
+    count = 0
+    for index in range(len(array)):
+        #print array[index][index]
+        count +=  array[index][index]
+
+    for index in range(len(array)):
+
+        new = len(array) -1 - index
+        count = count - array[index][new]
+    return abs(count)
+print DiagonalDifference(newlist)
