@@ -1,0 +1,12 @@
+def ReturnTwoHighestNum(array):
+    maxi = None
+    aftermaxi = None
+    for i in range(0, len(array)):
+        if array[i] > maxi:
+            aftermaxi = maxi
+            maxi = array[i]
+        elif array[i] > aftermaxi:
+            aftermaxi = array[i]
+    return maxi, aftermaxi
+
+print ReturnTwoHighestNum([1,87,65,42,21])
