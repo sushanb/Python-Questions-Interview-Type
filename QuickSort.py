@@ -24,9 +24,20 @@ def Partition(L, low, high):
     L[low], L[forward] = L[forward] , L[low]
     return forward
 
+def PartitionWithPivotFunction(L, low, high):
+    pivot = L[high] #Assumes that the element in high index is pivot
+    start_index = low #Select the starting index as index 
+    for i in range(low, high): # A for procedure that gives us a correct index of the pivot number
+        if L[i] <= pivot: #If the element is less than pivot, shift it near to start
+            L[i], L[start_index] = L[start_index], L[i] #Swapping in Python
+            start_index += 1 #Increment the counter
+    L[high], L[start_index] = L[start_index], L[high] #Swapping in Python and the value in end get the right place
+    return start_index
+
 def MainQS(L, low, high):
     if low < high:
-        par_in = Partition(L, low, high)
+        par_in = PartitionWithPivotFunction(L, low, high)
         MainQS(L, low, par_in -1)
         MainQS(L, par_in + 1, high)
     return L
+print QuickSort([1,-10,-20,6,18])
